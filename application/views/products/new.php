@@ -29,7 +29,7 @@
         }
 
         #number{
-            width: 30px;
+            width: 50px;
             height: 30px;
         }
         #create{

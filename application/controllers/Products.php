@@ -6,7 +6,7 @@
         /*
             DOCU: This function set the specific page of user and admin
             Showing product dashboard.
-            Owner: Ron Santos
+            Owner: Ron Garcia Santos
         */
         public function index()
         {
@@ -29,7 +29,7 @@
 
         /*
             DOCU: Show the new product page if add new button triggered.
-            Owner: Ron Santos
+            Owner: Ron Garcia Santos
         */
         public function new()
         {
@@ -46,7 +46,7 @@
         /*
             DOCU: This function collect inputs from forms when clicked.
             Validates inputs and go to page depends on validation process.
-            Owner: Ron Santos
+            Owner: Ron Garcia Santos
         */
 
         public function create()
@@ -63,7 +63,12 @@
             }
         }
 
-        public function show($id){
+        /*
+            DOCU: Showing information of product specified.
+            Owner: Ron Garcia Santos
+        */
+        public function show($id)
+        {
             $current_user_id = $this->session->userdata('user_id');
             if($current_user_id == 1){
                 $this->load->view('templates/admin_header');
@@ -73,7 +78,36 @@
 
             $product = $this->product->get_product($id);
             $this->load->view('products/show', $product);
+        }
 
+        public function edit($id)
+        {
+            $current_user_id = $this->session->userdata('user_id');
+            if($current_user_id == 1){
+                $this->load->view('templates/admin_header');
+            }else{
+                $this->load->view('templates/user_header');
+            }
+
+            $product = $this->product->get_product($id);
+            $this->load->view('products/edit', $product);
+            $this->output->enable_profiler();
+        }
+
+        public function update($id)
+        {
+            $result = $this->product->validate_product($this->input->post());
+            if($result != null){
+                $this->session->set_flashdata('input_errors', $result);
+                redirect('products/edit/'. $id);
+            }else{
+                $product = $this->input->post();
+                $this->product->update_product($product, $id);
+                $this->session->set_flashdata('input_success', 'Product updated successfully!');
+                redirect('/dashboard/admin');
+            }
+
+            
         }
     }
 ?>

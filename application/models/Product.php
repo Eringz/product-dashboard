@@ -71,5 +71,30 @@
             return $this->db->query($query, $this->security->xss_clean($id))->row_array();
         }
 
+        function validate_product($product)
+        {
+            $this->form_validation->set_error_delimiters('<div>', '</div>');
+            $this->form_validation->set_rules('product_name', 'Product Name', 'required');
+            $this->form_validation->set_rules('description', 'Description', 'required');
+            $this->form_validation->set_rules('price', 'Price', 'required|numeric');
+            $this->form_validation->set_rules('inventory_count', 'Inventory Count', 'required');
+
+            if(!$this->form_validation->run()){
+                return validation_errors();
+            }
+
+        }
+
+        function update_product($product, $id){
+            $query = "UPDATE products SET product_name=?, products.description=?, price=?, inventory_count=?, updated_at= NOW() WHERE id=?";
+            $values = array(
+                $this->security->xss_clean($product['product_name']),
+                $this->security->xss_clean($product['description']),
+                $this->security->xss_clean($product['price']),
+                $this->security->xss_clean($product['inventory_count']),
+                $this->security->xss_clean($id)
+            );
+            return $this->db->query($query, $values);
+        }
     }
 ?>

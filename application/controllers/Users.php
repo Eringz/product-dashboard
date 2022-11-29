@@ -138,7 +138,7 @@ class Users extends CI_Controller
         DOCU: This is to show the edit form of a user when clicked.
         Owner: Ron Santos
     */
-    public function user_edit()
+    public function edit()
     {
         $current_user_id = $this->session->userdata('user_id');
         if($current_user_id == 1){

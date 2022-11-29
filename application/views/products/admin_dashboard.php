@@ -7,10 +7,17 @@
         <title>Product Dashboard - Admin</title>
         <link rel="stylesheet" href="<?= base_url(); ?>assets/css/home_style.css">
     </head>
+    <style>
+        .success{
+            color: green;
+            margin: 20px;
+        }
+    </style>
     <body>
         <div class="dashboard-div">
             <h2>Manage Products</h2>
             <a id="add" href="/products/new">Add new</a>
+            <div class="success"><?= $this->session->flashdata('input_success')?></div>
             <table>
                 <tr>
                     <th>ID</th>

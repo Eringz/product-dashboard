@@ -134,7 +134,7 @@
 
         function update_password($new_password, $user_id)
         {
-            $query = "UPDATE users SET password =?, updated_at= NOW() WHERE id=?";
+            $query = "UPDATE users SET password=?, updated_at= NOW() WHERE id=?";
             $values = array(
                 md5($this->security->xss_clean($new_password)),
                 $this->security->xss_clean($user_id)
