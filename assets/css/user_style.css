@@ -1,0 +1,46 @@
+*{
+    /* outline: 1px solid pink; */
+    font-family: sans-serif;
+}
+    body{
+        margin: 0;
+    }
+/*              navbar                      */
+        div.navbar{
+            border: 1px solid black;
+        }
+            .navbar h1{
+                display: inline-block;
+                width: 90%;
+                margin: 5px 10px;
+            }
+            .navbar a{
+                text-decoration: none;
+            }
+/*              login                      */
+        .div-login, .div-register{
+            margin: 20px;
+        }
+            .div-login form{
+                display: inline-block;
+                width: 300px;
+            }
+                .div-login form input, .div-login a, .div-register input{
+                    display: block;
+                    margin: 5px 0;
+                }
+                #btn-login, #btn-register{
+                    background-color: green;
+                    color: white;
+                    
+                }
+                #btn-login{
+                    margin-left: 120px;
+                }
+        .div-login a, .div-register a{
+            font-size: .8rem;
+        }
+        #btn-register{
+            margin-left: 105px;
+        }
+

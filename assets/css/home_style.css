@@ -1,0 +1,51 @@
+*{
+    font-family: sans-serif;
+}
+    body{
+        margin: 0;
+    }
+        div.navbar{
+            border: 1px solid black;
+        }
+            .navbar h1, h2, table{
+                display: inline-block;
+            }
+            .navbar h1{
+                margin: 5px 10px;
+                width: 25%;
+            }            .navbar a{
+                text-decoration: none;
+                font-size: 1.4rem;
+                color: black;
+                margin: 20px;
+            }
+            #logoff{
+                margin-left: 46%;
+            }
+
+            h2{
+                margin: 40px 20px;
+                width: 80%;
+            }
+
+            #add{
+                background-color: blue;
+                padding: 5px 15px;
+                border-radius: 3px;
+                text-decoration: none;
+                color: white;
+
+            }
+            table{
+                margin: 20px;
+                text-align: center;
+            }
+            table,th,td{
+                border-collapse: collapse;
+                border: 1px solid black;
+            }
+            th,td{
+                padding: 5px 40px;
+            }
+
+            
