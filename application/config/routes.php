@@ -60,7 +60,7 @@ $route['login/validate'] = 'users/process_login';
 $route['register'] = 'users/register';
 $route['register/validate'] = 'users/process_registration';
 
-$route['users/edit'] = 'users/edit';
+$route['users/edit'] = 'users/user_edit';
 $route['edit/validate'] = 'users/user_update';
 $route['password/validate'] = 'users/password_update';
 
@@ -72,7 +72,11 @@ $route['dashboard/admin'] = 'products/index';
 
 $route['products/new'] = 'products/new';
 $route['create'] = 'products/create';
+
 $route['products/show/(:number)'] = 'products/show/$1';
+
 $route['products/edit/(:number)'] = 'products/edit/$1';
+
+
 
 

@@ -138,7 +138,7 @@ class Users extends CI_Controller
         DOCU: This is to show the edit form of a user when clicked.
         Owner: Ron Santos
     */
-    public function edit()
+    public function user_edit()
     {
         $current_user_id = $this->session->userdata('user_id');
         if($current_user_id == 1){
@@ -146,7 +146,7 @@ class Users extends CI_Controller
         }else{
             $this->load->view('templates/user_header');
         }
-        $this->load->view('products/edit');
+        $this->load->view('users/edit');
         $this->output->enable_profiler();
     }
 
@@ -198,13 +198,11 @@ class Users extends CI_Controller
             }else{
                 $this->session->set_flashdata('password_errors', $result);
             }
-            
+
         }
         
         redirect('users/edit');
     }
-
-
 
 }
     

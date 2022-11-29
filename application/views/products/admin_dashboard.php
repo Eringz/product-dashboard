@@ -28,7 +28,7 @@
                     <td><?= $product['count']?></td>
                     <td><?= $product['qty_sold']?></td>
                     <td>
-                        <a href="">edit</a>
+                        <a href=/products/edit/<?= $product['id']; ?>">edit</a>
                         <a href="">remove</a>
                     </td>
                 </tr>
