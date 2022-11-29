@@ -43,6 +43,7 @@
 </head>
 <body>
     <div class="errors"><?= $this->session->flashdata('input_errors'); ?></div>
+    <div></div>
     <h2>Add a new Product</h2>
     <a href="/dashboard/admin" id="dashboard">Return to Dashboard</a>
     <form action="/create" method="POST">

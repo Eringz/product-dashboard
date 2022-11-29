@@ -96,5 +96,11 @@
             );
             return $this->db->query($query, $values);
         }
+
+        function destroy_product($id)
+        {
+            $query = "DELETE FROM products WHERE id=?";
+            return $this->db->query($query, $id);
+        }
     }
 ?>

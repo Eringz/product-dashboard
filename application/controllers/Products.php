@@ -59,7 +59,8 @@
             }else{
                 $form_data = $this->input->post();
                 $this->product->create_product($form_data);
-                redirect('/dashboard');
+                $this->session->set_flashdata('input_success', 'New Product created successfully!');
+                redirect('/dashboard/admin');
             }
         }
 
@@ -80,6 +81,10 @@
             $this->load->view('products/show', $product);
         }
 
+        /*
+            DOCU: Show edit page when admin can edit product information specify.
+            Owner: Ron Garcia Santos
+        */
         public function edit($id)
         {
             $current_user_id = $this->session->userdata('user_id');
@@ -94,6 +99,10 @@
             $this->output->enable_profiler();
         }
 
+        /*
+            DOCU: This function update information when save button is clicked.
+            Owner: Ron Garcia Santos
+        */
         public function update($id)
         {
             $result = $this->product->validate_product($this->input->post());
@@ -106,8 +115,14 @@
                 $this->session->set_flashdata('input_success', 'Product updated successfully!');
                 redirect('/dashboard/admin');
             }
+        }
 
-            
+        public function destroy($id)
+        {
+            $this->product->destroy_product($id);
+            //needs prior confirmation box before deleting a product.
+            $this->session->set_flashdata('input_success', 'Product remove successfully!');
+            redirect('/dashboard/admin');
         }
     }
 ?>
