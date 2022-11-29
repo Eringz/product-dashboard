@@ -55,7 +55,7 @@
             $result = $this->product->validate_registration($product);
             if($result != null){
                 $this->session->set_flashdata('input_errors', $result);
-                // redirect('new');
+                redirect('products/new');
             }else{
                 $form_data = $this->input->post();
                 $this->product->create_product($form_data);
@@ -64,10 +64,16 @@
         }
 
         public function show($id){
-            $product = $this->product->get_product($id);
+            $current_user_id = $this->session->userdata('user_id');
+            if($current_user_id == 1){
+                $this->load->view('templates/admin_header');
+            }else{
+                $this->load->view('templates/user_header');
+            }
 
-            $this->load->view('templates/dashboard_header');
+            $product = $this->product->get_product($id);
             $this->load->view('products/show', $product);
+
         }
     }
 ?>

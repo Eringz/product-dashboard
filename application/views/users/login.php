@@ -9,6 +9,7 @@
         <title>LogIn Page</title>
     </head>
     <body>
+        <div class="error"><?= $this->session->flashdata('input_errors');?></div>
         <div class="div-login">
             <h2>Log In</h2>
             <form action="<?=base_url();?>/login/validate" method="post">

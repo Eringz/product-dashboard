@@ -40,7 +40,7 @@
             $query = "INSERT INTO products(product_name, description, price, inventory_count, created_at, updated_at) VALUES (?,?,?,?,NOW(),NOW())";
             $values = array(
                 $this->security->xss_clean($product['product_name']),
-                $this->security->xss_clean($product['descriotion']),
+                $this->security->xss_clean($product['description']),
                 $this->security->xss_clean($product['price']),
                 $this->security->xss_clean($product['inventory_count'])
             );

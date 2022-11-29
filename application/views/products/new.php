@@ -7,6 +7,18 @@
     <title>New Product - Admin</title>
     <link rel="stylesheet" href="<?= base_url();?>assets/css/home_style.css">
     <style>
+        .errors{
+            color: red;
+            margin: 20px;
+        }
+        #dashboard{
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 3px; 
+            text-decoration: none;
+            padding: 5px 10px;
+        }
         form{
             display: inline-block;
             padding: 20px;
@@ -15,6 +27,7 @@
             display: block;
             margin: 5px 0;
         }
+
         #number{
             width: 30px;
             height: 30px;
@@ -29,8 +42,9 @@
     </style>
 </head>
 <body>
+    <div class="errors"><?= $this->session->flashdata('input_errors'); ?></div>
     <h2>Add a new Product</h2>
-    <a href="/dashboard/admin">Return to Dashboard</a>
+    <a href="/dashboard/admin" id="dashboard">Return to Dashboard</a>
     <form action="/create" method="POST">
         <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>"  value="<?= $this->security->get_csrf_hash(); ?>">
         Name:
