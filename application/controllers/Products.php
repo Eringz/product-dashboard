@@ -76,6 +76,7 @@
             }else{
                 $this->load->view('templates/user_header');
             }
+            $this->session->set_userdata('product_id', $id);
             $email = $this->session->userdata('email');
             $product = $this->product->get_product($id);
             $user = $this->user->get_user_by_email($email);
@@ -134,5 +135,25 @@
             $this->session->set_flashdata('input_success', 'Product removed successfully!');
             redirect('/dashboard/admin');
         }
+
+        public function validate_review()
+        {
+            $product_id = $this->session->userdata('product_id');
+            $current_user_id = $this->session->userdata('user_id');
+            $result = $this->review->validate_review();
+            
+            if($result != 'success'){
+                $this->session->set_flashdata('input_errors', $result);
+            }else{
+                $this->review->add_review($current_user_id, $this->input->post('review'));
+            }
+            redirect('products/show/'. $product_id );
+        }
+
+        public function validate_comment()
+        {
+            
+        }
+
     }
 ?>

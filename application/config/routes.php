@@ -54,6 +54,11 @@ $route['default_controller'] = 'users';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+
+/*
+    DOCU: routes for user controller
+    Owner: Ron Garcia Santos
+*/
 $route['login'] = 'users/login';
 $route['login/validate'] = 'users/process_login';
 
@@ -66,19 +71,25 @@ $route['password/validate'] = 'users/password_update';
 
 $route['logoff'] = 'users/logoff';
 
+/*
+    DOCU: routes for product controller
+*/
 $route['dashboard'] = 'products/index';
 $route['dashboard/admin'] = 'products/index';
-
 
 $route['products/new'] = 'products/new';
 $route['create'] = 'products/create';
 
-$route['products/show/(:number)'] = 'products/show/$1';
-
 $route['products/edit/(:number)'] = 'products/edit/$1';
 $route['products/update/(:number)'] = 'products/update/$1';
 
+$route['products/show/(:number)'] = 'products/show/$1';
+
 $route['products/destroy/(:number)'] = 'products/destroy/$1';
+
+/*
+    DOCU: routes for messages
+*/
 
 
 

@@ -52,9 +52,6 @@
         }
     </style>
     <body>
-        <?php 
-            var_dump($product);
-            ?>
         <h2><?= $product['product_name']; ?>($<?= $product['price']; ?>)</h2>
         <p>Added since: <?= $product['created_at']; ?> </p>
         <p>Product ID #<?= $product['id']; ?></p>
@@ -62,16 +59,16 @@
         <p>Total sold: <?= $product['qty_sold']; ?></p>
         <p>Number of available stocks: <?= $product['inventory_count']; ?></p>
         <h3>Leave a Review</h3>
-        <form action="">
+        <form action="<?= base_url(); ?>products/validate_review" method="POST">
             <input type="hidden" name="<?= $this->security->get_csrf_token_name();?>" value="<?= $this->security->get_csrf_hash(); ?>">
             <textarea name="review" id="" cols="200" rows="8"></textarea>
             <input type="submit" value="Post" id="post">
         </form>
         <div class="review-div">
-            <form  action="">
+            <form  action="<?= base_url(); ?>products/validate_comment" method="POST">
                 <p class="reviewer-p">Reviewers wrote:  <span class="reviewer-s">7 hours ago</span></p>
                 <input type="hidden" name="<?= $this->security->get_csrf_token_name();?>" value="<?= $this->security->get_csrf_hash(); ?>">
-                <textarea name="review" id="" cols="200" rows="8"></textarea>
+                <textarea name="comment" id="" cols="200" rows="8"></textarea>
 
                 <div class="comment-div">
                     <p class="commentator-p">Commentators wrote: <span class="commentator-s">23 minutes ago</span></p>
