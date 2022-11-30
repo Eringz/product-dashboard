@@ -22,24 +22,64 @@
             margin: 10px 0 0 1270px;
             border: none;
             border-radius: 3px;
-            
+        }
+        
+        .reviewer-p{
+            margin: 0;
+        }
+        .reviewer-s{
+            margin-left: 78%;
+        }
+
+        .comment-div{
+            margin: 0 95px;
+        }
+        .commentator-p{
+            margin-bottom: 0;
+        }
+        .comment-p{
+            padding: 20px 0 0 20px;
+            margin-top: 0;
+            height: 40px;
+            border: 1px solid black;
+        }
+        .commentator-s{
+            margin-left: 79%;
+        }
+
+        .reviewer-s, .commentator-s{
+            font-size: .85rem;
         }
     </style>
     <body>
-        <h2><?= $product_name ?>($<?= $price ?>)</h2>
-        <p>Added since: <?= $created_at ?> </p>
-        <p>Product ID #<?= $id ?></p>
-        <p>Description: <?= $description ?> </p>
-        <p>Total sold: <?= $qty_sold ?></p>
-        <p>Number of available stocks: <?= $inventory_count ?></p>
+        <?php 
+            var_dump($product);
+            ?>
+        <h2><?= $product['product_name']; ?>($<?= $product['price']; ?>)</h2>
+        <p>Added since: <?= $product['created_at']; ?> </p>
+        <p>Product ID #<?= $product['id']; ?></p>
+        <p>Description: <?= $product['description']; ?> </p>
+        <p>Total sold: <?= $product['qty_sold']; ?></p>
+        <p>Number of available stocks: <?= $product['inventory_count']; ?></p>
         <h3>Leave a Review</h3>
         <form action="">
             <input type="hidden" name="<?= $this->security->get_csrf_token_name();?>" value="<?= $this->security->get_csrf_hash(); ?>">
             <textarea name="review" id="" cols="200" rows="8"></textarea>
             <input type="submit" value="Post" id="post">
         </form>
-        <div class="review">
-            <p><?= $user['id'] ?></p>
+        <div class="review-div">
+            <form  action="">
+                <p class="reviewer-p">Reviewers wrote:  <span class="reviewer-s">7 hours ago</span></p>
+                <input type="hidden" name="<?= $this->security->get_csrf_token_name();?>" value="<?= $this->security->get_csrf_hash(); ?>">
+                <textarea name="review" id="" cols="200" rows="8"></textarea>
+
+                <div class="comment-div">
+                    <p class="commentator-p">Commentators wrote: <span class="commentator-s">23 minutes ago</span></p>
+                    <p class="comment-p">Thank you for buying</p>
+                </div>
+                
+                <input type="submit" value="Post" id="post">
+            </form> 
         </div>
     </body>
 </html>

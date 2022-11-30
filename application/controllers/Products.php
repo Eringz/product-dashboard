@@ -78,7 +78,7 @@
             }
             $email = $this->session->userdata('email');
             $product = $this->product->get_product($id);
-            $user = $this->user->get_user_by_email('');
+            $user = $this->user->get_user_by_email($email);
             $parram = array(
                 'product' => $product,
                 'user' => $user
