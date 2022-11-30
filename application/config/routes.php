@@ -78,7 +78,7 @@ $route['products/show/(:number)'] = 'products/show/$1';
 $route['products/edit/(:number)'] = 'products/edit/$1';
 $route['products/update/(:number)'] = 'products/update/$1';
 
-$rout['products/destroy/(:number)'] = 'products/destroy/$1';
+$route['products/destroy/(:number)'] = 'products/destroy/$1';
 
 
 

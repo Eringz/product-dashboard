@@ -38,6 +38,8 @@
             <textarea name="review" id="" cols="200" rows="8"></textarea>
             <input type="submit" value="Post" id="post">
         </form>
-        
+        <div class="review">
+            <p><?= $user['id'] ?></p>
+        </div>
     </body>
 </html>

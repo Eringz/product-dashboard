@@ -76,9 +76,16 @@
             }else{
                 $this->load->view('templates/user_header');
             }
-
+            $email = $this->session->userdata('email');
             $product = $this->product->get_product($id);
-            $this->load->view('products/show', $product);
+            $user = $this->user->get_user_by_email('');
+            $parram = array(
+                'product' => $product,
+                'user' => $user
+            );
+            
+            $this->load->view('products/show', $parram);
+            $this->output->enable_profiler();
         }
 
         /*
@@ -117,11 +124,14 @@
             }
         }
 
+        /*
+            DOCU: This is function delete a product when remove button is clicked.
+            Owner: Ron Garcia Santos
+        */
         public function destroy($id)
         {
             $this->product->destroy_product($id);
-            //needs prior confirmation box before deleting a product.
-            $this->session->set_flashdata('input_success', 'Product remove successfully!');
+            $this->session->set_flashdata('input_success', 'Product removed successfully!');
             redirect('/dashboard/admin');
         }
     }
