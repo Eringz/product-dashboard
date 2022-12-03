@@ -71,6 +71,8 @@
         public function show($id)
         {
             $current_user_id = $this->session->userdata('user_id');
+            $product_review = $this->review->get_reviews();
+
             if($current_user_id == 1){
                 $this->load->view('templates/admin_header');
             }else{

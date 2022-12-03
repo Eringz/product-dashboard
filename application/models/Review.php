@@ -30,5 +30,10 @@
             $values = array($user_id, $review);
             return $this->db->query($query, $values);
         }
+
+        function get_reviews()
+        {
+            $query = "SELECT reviews.id as review_id ";
+        }
     }
 ?>
