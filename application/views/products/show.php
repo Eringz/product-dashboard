@@ -67,7 +67,7 @@
     <body>
         <div class="errors"><?= $this->session->userdata('input_errors'); ?></div>
         <h2><?= $product['product_name']; ?>($<?= $product['price']; ?>)</h2>
-        <p>Added since: <?= $product['created_at']; ?> </p>
+        <p>Added since: <?= $product['created']; ?> </p>
         <p>Product ID #<?= $product['id']; ?></p>
         <p>Description: <?= $product['description']; ?> </p>
         <p>Total sold: <?= $product['qty_sold']; ?></p>

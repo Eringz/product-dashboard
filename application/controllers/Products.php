@@ -155,13 +155,14 @@
 
         public function validate_review()
         {
-            $product_id = $this->session->userdata('product_id');
-            $current_user_id = $this->session->userdata('user_id');
+            
             $result = $this->review->validate_review();
             
             if($result != 'success'){
                 $this->session->set_flashdata('input_errors', $result);
             }else{
+                $product_id = $this->session->userdata('product_id');
+                $current_user_id = $this->session->userdata('user_id');
                 $this->review->add_review($current_user_id, $this->input->post('review'), $product_id);
             }
             redirect('products/show/'. $product_id );

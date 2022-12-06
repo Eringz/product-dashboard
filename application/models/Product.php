@@ -47,6 +47,11 @@
             return $this->db->query($query, $values);
         }
 
+        function initial_sell_order()
+        {
+
+        }
+
         /*
             DOCU: Getting the lists of all product stored.
             Retrieve certain information specify.
@@ -65,7 +70,7 @@
         */
         function get_product($id)
         {
-            $query = "SELECT products.*, sales.qty_sold AS qty_sold FROM products 
+            $query = "SELECT products.*, DATE_FORMAT(products.created_at, '%M %D %Y') AS created , sales.qty_sold AS qty_sold FROM products 
             LEFT JOIN sales ON product_id = products.id WHERE products. id=?";
             return $this->db->query($query, $this->security->xss_clean($id))->row_array();
         }

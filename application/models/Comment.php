@@ -32,7 +32,7 @@
 
         function get_comments_by_review_id($review_id)
         {
-            $query = "SELECT comments.*, CONCAT(first_name, ' ', last_name) AS commentator
+            $query = "SELECT comments.*, CONCAT(first_name, ' ' , last_name) AS commentator
                         FROM comments
                         INNER JOIN users ON users.id = comments.user_id
                         INNER JOIN reviews ON reviews.id = comments.review_id

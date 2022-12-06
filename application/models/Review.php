@@ -25,10 +25,10 @@
             DOCU: This function is to store review information.
             Owner: Ron Garcia Santos
         */
-        function add_review($user_id, $review, $product_id)
+        function add_review($current_user_id, $review, $product_id)
         {
-            $query = "INSERT INTO reviews(user_id, review, product_id, created_at, updated_at) VALUES(?, ?. ?, NOW(), NOW())";
-            $values = array($user_id, $review, $product_id);
+            $query = "INSERT INTO reviews(user_id, review, product_id, created_at, updated_at) VALUES(?, ?, ?, NOW(), NOW())";
+            $values = array($current_user_id, $review, $product_id);
             return $this->db->query($query, $values);
         }
 
@@ -40,10 +40,10 @@
         {
             $query = "SELECT reviews.*, CONCAT(first_name, ' ', last_name) as username  FROM reviews
                         INNER JOIN products ON products.id = reviews.product_id
-                        INNER JOIN users ON users.id = reviews.user_id";
+                        INNER JOIN users ON users.id = reviews.user_id
+                        ORDER BY reviews.created_at DESC";
             return $this->db->query($query)->result_array();
         }
-
 
         
     }
