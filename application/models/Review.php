@@ -13,6 +13,7 @@
             $this->form_validation->set_error_delimiters('<div>', '</div>');
             $this->form_validation->set_rules('review', 'Review', 'required');
             
+            
             if(!$this->form_validation->run()){
                 return validation_errors();
             }else{
@@ -24,16 +25,21 @@
             DOCU: This function is to store review data.
             Owner: Ron Garcia Santos
         */
-        function add_review($user_id, $review)
+        function add_review($user_id, $review, $product_id)
         {
-            $query = 'INSERT INTO reviews(user_id, review, created_at, updated_at) VALUES(?,?,NOW(),NOW())';
-            $values = array($user_id, $review);
+            $query = 'INSERT INTO reviews(user_id, review, product_id, created_at, updated_at) VALUES(?,?,?,NOW(),NOW())';
+            $values = array($user_id, $review, $product_id);
             return $this->db->query($query, $values);
         }
 
         function get_reviews()
         {
-            $query = "SELECT reviews.id as review_id ";
+            $query = "SELECT reviews.*, CONCAT(first_name, ' ', last_name) as username  FROM reviews
+                        INNER JOIN products ON products.id = reviews.product_id
+                        INNER JOIN users ON users.id = reviews.user_id";
+            return $this->db->query($query)->result_array();
         }
+
+        
     }
 ?>

@@ -71,18 +71,28 @@
         public function show($id)
         {
             $current_user_id = $this->session->userdata('user_id');
-            $product_review = $this->review->get_reviews();
+            $email = $this->session->userdata('email');
+            $this->session->set_userdata('product_id', $id);
 
             if($current_user_id == 1){
                 $this->load->view('templates/admin_header');
             }else{
                 $this->load->view('templates/user_header');
             }
-            $this->session->set_userdata('product_id', $id);
-            $email = $this->session->userdata('email');
+
             $product = $this->product->get_product($id);
             $user = $this->user->get_user_by_email($email);
+            $product_reviews = $this->review->get_reviews();
+            $inbox = array();
+            foreach($product_reviews as $review){
+                if($review['product_id'] == $id){
+                    $inbox[] = $review;
+                }
+            }
+            
+            
             $parram = array(
+                'inbox' => $inbox,
                 'product' => $product,
                 'user' => $user
             );
@@ -147,7 +157,7 @@
             if($result != 'success'){
                 $this->session->set_flashdata('input_errors', $result);
             }else{
-                $this->review->add_review($current_user_id, $this->input->post('review'));
+                $this->review->add_review($current_user_id, $this->input->post('review'), $product_id);
             }
             redirect('products/show/'. $product_id );
         }

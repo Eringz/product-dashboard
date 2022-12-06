@@ -66,8 +66,7 @@
         function get_product($id)
         {
             $query = "SELECT products.*, sales.qty_sold AS qty_sold FROM products 
-            LEFT JOIN sales ON product_id = products.id
-            WHERE products. id=?";
+            LEFT JOIN sales ON product_id = products.id WHERE products. id=?";
             return $this->db->query($query, $this->security->xss_clean($id))->row_array();
         }
 
