@@ -83,16 +83,18 @@
 ?>
         <div class="review-div">
             <form  action="<?= base_url(); ?>products/validate_comment" method="POST">
-                <p class="reviewer-p"><?= $review['username']?> wrote:</p> <span class="reviewer-s">7 hours ago</span>
+                <p class="reviewer-p"><?= $review['username']?> wrote:</p> <span class="reviewer-s"><?= $review['time']?></span>
                 <input type="hidden" name="<?= $this->security->get_csrf_token_name();?>" value="<?= $this->security->get_csrf_hash(); ?>">
                 <input type="hidden" name="review_id" value="<?= $review['id']; ?>">
                 <p class="reviewer-content"><?= $review['review']; ?></p>
     <?php
+
         foreach($review['comments'] as $comment){
+            var_dump($comment);
     ?>
                 <div class="comment-div">
                     <p class="commentator-p"><?= $comment['commentator']; ?> wrote: </p>
-                    <span class="commentator-s">23 minutes ago</span>
+                    <span class="commentator-s"><?= $comment['id']; ?></span>
                     <p class="comment-p"><?= $comment['comment']; ?></p>
                 </div>
     <?php
