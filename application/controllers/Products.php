@@ -84,9 +84,13 @@
             $product = $this->product->get_product($id);
             $user = $this->user->get_user_by_email($email);
             $product_reviews = $this->review->get_reviews();
+            
             $inbox = array();
+            
             foreach($product_reviews as $review){
                 if($review['product_id'] == $id){
+                    $comments = $this->comment->get_comments_by_review_id($review['id']);
+                    $review['comments'] = $comments;
                     $inbox[] = $review;
                 }
             }
@@ -173,7 +177,7 @@
             if($result != 'success'){
                 $this->session->set_flashdata('input_errors', $result);
             }else{
-                $this->review->add_comment($current_user_id, $post);
+                $this->comment->add_comment($current_user_id, $post);
             }
             redirect('products/show/'. $product_id);
         }

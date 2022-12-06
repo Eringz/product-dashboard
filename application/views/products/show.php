@@ -28,7 +28,15 @@
             margin: 0;
         }
         .reviewer-s{
-            margin-left: 78%;
+            margin-left: 73%;
+        }
+        .reviewer-content{
+            display: inline-block;
+            padding: 20px;
+            margin: 5px 0;
+            width: 89%;
+            border: 1px solid black;
+
         }
 
         .comment-div{
@@ -50,6 +58,10 @@
         .reviewer-s, .commentator-s{
             font-size: .85rem;
         }
+
+        .comment-input{
+            margin: 20px 110px;
+        }
     </style>
     <body>
         <div class="errors"><?= $this->session->userdata('input_errors'); ?></div>
@@ -66,22 +78,26 @@
             <input type="submit" value="Post" id="post">
         </form>
 <?php
-    $i = 0;
     foreach($inbox as $review){
-        $i++;
 ?>
         <div class="review-div">
             <form  action="<?= base_url(); ?>products/validate_comment" method="POST">
                 <p class="reviewer-p"><?= $review['username']?> wrote: <span class="reviewer-s">7 hours ago</span></p>
                 <input type="hidden" name="<?= $this->security->get_csrf_token_name();?>" value="<?= $this->security->get_csrf_hash(); ?>">
                 <input type="hidden" name="review_id" value="<?= $review['id']; ?>">
-                <p><?= $review['review']; ?></p>
-
+                <p class="reviewer-content"><?= $review['review']; ?></p>
+    <?php
+        foreach($review['comments'] as $comment){
+    ?>
                 <div class="comment-div">
-                    <p class="commentator-p">Commentators wrote: <span class="commentator-s">23 minutes ago</span></p>
-                    <p class="comment-p">Thank you for buying</p>
-                    <textarea name="comment" id="" cols="200" rows="8"></textarea>
+                    <p class="commentator-p"><?= $comment['commentator']; ?> wrote: <span class="commentator-s">23 minutes ago</span></p>
+                    <p class="comment-p"><?= $comment['comment']; ?></p>
                 </div>
+    <?php
+        }
+    ?>
+                <textarea name="comment" class="comment-input" cols="184" rows="8"></textarea>
+                
                 
                 <input type="submit" value="Post" id="post">
             </form> 
