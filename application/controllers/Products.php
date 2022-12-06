@@ -91,9 +91,12 @@
                 if($review['product_id'] == $id){
                     $review_time_diff = $this->review->get_review_time_diff($review['time_diff'], $review['created']);
                     $comments = $this->comment->get_comments_by_review_id($review['id']);
-
-                    $comment_time_diff = $this->comment->get_comment_time_diff($comments['time_diff'], $comments['created']);
-                    $comment['id'] = $comment_time_diff;
+                    foreach($comments as $comment){
+                            $comment['timefsf'] = 0;
+                            $comment_time_diff = $this->comment->get_comment_time_diff($comment['time_diff'], $comment['created']);
+                            $comment['time'] = $comment_time_diff;
+                        }
+                    
                     $review['comments'] = $comments;
                     $review['time'] = $review_time_diff;
                     $inbox[] = $review;
