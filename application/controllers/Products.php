@@ -58,8 +58,9 @@
                 redirect('products/new');
             }else{
                 $form_data = $this->input->post();
-                $this->product->create_product($form_data);
+                $new_product = $this->product->create_product($form_data);
                 $this->session->set_flashdata('input_success', 'New Product created successfully!');
+                $this->product->initial_sell_order($new_product);
                 redirect('/dashboard/admin');
             }
         }
@@ -169,6 +170,12 @@
             $current_user_id = $this->session->userdata('user_id');
 
             $result = $this->comment->validate_comment();
+            if($result != 'success'){
+                $this->session->set_flashdata('input_errors', $result);
+            }else{
+                $this->review->add_comment($current_user_id, $post);
+            }
+            redirect('products/show/'. $product_id);
         }
 
     }

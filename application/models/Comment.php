@@ -19,5 +19,11 @@
             }
         }
 
+        function add_comment($current_user_id, $post)
+        {
+            $query = "INSERT INTO comments(user_id, review_id, comment, created_at, updated_at) VALUES(?, ?, ?, NOW(), NOW())";
+            $values = array($current_user_id, $post['review_id'], $post['comment']);
+            return $this->db->query($query, $values);
+        }
     }
 ?>
