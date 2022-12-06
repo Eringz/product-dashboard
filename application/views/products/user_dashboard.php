@@ -17,9 +17,12 @@
                     <th>Inventory Count</th>
                     <th>Quantity Sold</th>
                 </tr>
-<?php       foreach($lists as $product){ ?>
+<?php       
+            $i = 0;
+            foreach($lists as $product){ ?>
+            $i++;
                 <tr>
-                    <td><?= $product['id']?></td>
+                    <td><?= $i; ?></td>
                     <td><a href="/products/show/<?= $product['id'] ?>"><?= $product['name']?></a></td>
                     <td><?= $product['count'] ?></td>
                     <td><?= $product['qty_sold'] ?></td>

@@ -48,8 +48,7 @@
             $minute = round($now / 60);
             $hour = round($minute / 60);
             $day = round($hour / 24);
-            $week = round($day / 7);
-            
+
             if($now < 60){
                 return $now . ' seconds ago';
             }elseif($now >= 60 AND $now < 3600 ){

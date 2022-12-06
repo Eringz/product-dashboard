@@ -84,25 +84,21 @@
             $product = $this->product->get_product($id);
             $user = $this->user->get_user_by_email($email);
             $product_reviews = $this->review->get_reviews();
-            
             $inbox = array();
             
             foreach($product_reviews as $review){
                 if($review['product_id'] == $id){
                     $review_time_diff = $this->review->get_review_time_diff($review['time_diff'], $review['created']);
                     $comments = $this->comment->get_comments_by_review_id($review['id']);
-                    foreach($comments as $comment){
-                            $comment['timefsf'] = 0;
-                            $comment_time_diff = $this->comment->get_comment_time_diff($comment['time_diff'], $comment['created']);
-                            $comment['time'] = $comment_time_diff;
-                        }
-                    
                     $review['comments'] = $comments;
-                    $review['time'] = $review_time_diff;
+                    foreach($review['comments'] as $comment){
+                        $comment_time_diff = $this->comment->get_comment_time_diff($comment['time_diff'], $comment['created']);
+                        $comment['comment_time'] = $comment_time_diff;
+                    }
+                    $review['review_time'] = $review_time_diff;
                     $inbox[] = $review;
                 }
             }
-            
             
             $parram = array(
                 'inbox' => $inbox,
