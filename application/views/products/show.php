@@ -65,12 +65,15 @@
             <input type="submit" value="Post" id="post">
         </form>
 <?php
+    $i = 0;
     foreach($inbox as $review){
+        $i++;
 ?>
         <div class="review-div">
             <form  action="<?= base_url(); ?>products/validate_comment" method="POST">
                 <p class="reviewer-p"><?= $review['username']?> wrote:  <span class="reviewer-s">7 hours ago</span></p>
                 <input type="hidden" name="<?= $this->security->get_csrf_token_name();?>" value="<?= $this->security->get_csrf_hash(); ?>">
+                <input type="hidden" name="message_id" value="<?= $i; ?>">
                 <p><?= $review['review']; ?></p>
 
                 <div class="comment-div">

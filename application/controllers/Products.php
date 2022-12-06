@@ -164,7 +164,11 @@
 
         public function validate_comment()
         {
-            
+            $post = $this->input->post();
+            $product_id = $this->session->userdata('product_id');
+            $current_user_id = $this->session->userdata('user_id');
+
+            $result = $this->comment->validate_comment();
         }
 
     }
