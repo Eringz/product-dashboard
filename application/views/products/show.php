@@ -25,10 +25,9 @@
         }
         
         .reviewer-p{
+            display: inline-block;
             margin: 0;
-        }
-        .reviewer-s{
-            margin-left: 73%;
+            width: 85%;
         }
         .reviewer-content{
             display: inline-block;
@@ -43,7 +42,9 @@
             margin: 0 95px;
         }
         .commentator-p{
+            display: inline-block;
             margin-bottom: 0;
+            width: 86%;
         }
         .comment-p{
             padding: 20px 0 0 20px;
@@ -51,8 +52,8 @@
             height: 40px;
             border: 1px solid black;
         }
-        .commentator-s{
-            margin-left: 79%;
+        .reviewer-s, .commentator-s{
+            color: gray;
         }
 
         .reviewer-s, .commentator-s{
@@ -60,7 +61,7 @@
         }
 
         .comment-input{
-            margin: 20px 110px;
+            margin: 20px 0 0 115px;
         }
     </style>
     <body>
@@ -82,7 +83,7 @@
 ?>
         <div class="review-div">
             <form  action="<?= base_url(); ?>products/validate_comment" method="POST">
-                <p class="reviewer-p"><?= $review['username']?> wrote: <span class="reviewer-s">7 hours ago</span></p>
+                <p class="reviewer-p"><?= $review['username']?> wrote:</p> <span class="reviewer-s">7 hours ago</span>
                 <input type="hidden" name="<?= $this->security->get_csrf_token_name();?>" value="<?= $this->security->get_csrf_hash(); ?>">
                 <input type="hidden" name="review_id" value="<?= $review['id']; ?>">
                 <p class="reviewer-content"><?= $review['review']; ?></p>
@@ -90,13 +91,14 @@
         foreach($review['comments'] as $comment){
     ?>
                 <div class="comment-div">
-                    <p class="commentator-p"><?= $comment['commentator']; ?> wrote: <span class="commentator-s">23 minutes ago</span></p>
+                    <p class="commentator-p"><?= $comment['commentator']; ?> wrote: </p>
+                    <span class="commentator-s">23 minutes ago</span>
                     <p class="comment-p"><?= $comment['comment']; ?></p>
                 </div>
     <?php
         }
     ?>
-                <textarea name="comment" class="comment-input" cols="184" rows="8"></textarea>
+                <textarea name="comment" class="comment-input" cols="183" rows="8"></textarea>
                 
                 
                 <input type="submit" value="Post" id="post">
