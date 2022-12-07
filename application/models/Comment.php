@@ -30,6 +30,10 @@
             return $this->db->query($query, $values);
         }
 
+        /*
+            DOCU: This function retrieves all comments per review id.
+            Owner: Ron Garcia Santos
+        */
         function get_comments_by_review_id($review_id)
         {
             $query = "SELECT comments.*,DATE_FORMAT(comments.created_at, '%M %D %Y') AS created, 
@@ -42,6 +46,10 @@
             return $this->db->query($query, $review_id)->result_array();
         }
 
+        /*
+            DOCU: This function is to get time difference for comments.
+            Owner: Ron Garcia Santos
+        */
         function get_comment_time_diff($now, $created)
         {
             $now *= 60;

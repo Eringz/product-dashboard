@@ -107,7 +107,6 @@
             );
             
             $this->load->view('products/show', $parram);
-            $this->output->enable_profiler();
         }
 
         /*
@@ -125,7 +124,6 @@
 
             $product = $this->product->get_product($id);
             $this->load->view('products/edit', $product);
-            $this->output->enable_profiler();
         }
 
         /*
@@ -147,7 +145,7 @@
         }
 
         /*
-            DOCU: This is function delete a product when remove button is clicked.
+            DOCU: This  function deletes a product when remove button is clicked.
             Owner: Ron Garcia Santos
         */
         public function destroy($id)
@@ -157,6 +155,10 @@
             redirect('/dashboard/admin');
         }
 
+        /*
+            DOCUT: This function validates user's input for review form when button is clicked.
+            Owner: Ron Garcia Santos
+        */
         public function validate_review()
         {
             
@@ -171,7 +173,11 @@
             }
             redirect('products/show/'. $product_id );
         }
-
+        
+        /*
+            DOCUT: This function validates user's input for comment form when button is clicked.
+            Owner: Ron Garcia Santos
+        */
         public function validate_comment()
         {
             $post = $this->input->post();

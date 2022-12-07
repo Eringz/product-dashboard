@@ -45,6 +45,10 @@
             return $this->db->query($query)->result_array();
         }
 
+        /*
+            DOCU: This funtion is to get the time difference for reviews.
+            Owner: Ron Garcia Santos
+        */
         function get_review_time_diff($now, $created)
         {
             $now *= 60;
